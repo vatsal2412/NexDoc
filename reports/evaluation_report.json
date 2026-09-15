@@ -1,0 +1,154 @@
+{
+  "timestamp": "2026-09-15T09:59:37.529797",
+  "integrity_checks_passed": true,
+  "dataset_artifacts": 5,
+  "total_questions": 7,
+  "metrics": {
+    "baseline_accuracy": 0.8571428571428571,
+    "nexdoc_accuracy": 1.0,
+    "baseline_correct": 6,
+    "nexdoc_correct": 7
+  },
+  "per_question_results": [
+    {
+      "question_id": "Q01",
+      "category": "fact",
+      "question": "What is the Vendor ID on the invoice?",
+      "expected_answer": "V102",
+      "baseline_answer": "V102",
+      "nexdoc_answer": "V102",
+      "baseline_correct": true,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"invoice::page1!block1\", \"type\": \"field\", \"label\": \"vendor id: v102\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    },
+    {
+      "question_id": "Q02",
+      "category": "table",
+      "question": "What is the approved budget for the IT Department's Hardware category?",
+      "expected_answer": "100000",
+      "baseline_answer": "100000",
+      "nexdoc_answer": "100000",
+      "baseline_correct": true,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"budget::budget!c3\", \"type\": \"value\", \"label\": \"100000\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    },
+    {
+      "question_id": "Q03",
+      "category": "relationship",
+      "question": "Which vendor name corresponds to Vendor ID V103?",
+      "expected_answer": "Globex",
+      "baseline_answer": "Globex",
+      "nexdoc_answer": "Globex",
+      "baseline_correct": true,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"vendor_master::vendors!b3\", \"type\": \"label\", \"label\": \"globex\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    },
+    {
+      "question_id": "Q04",
+      "category": "cross_artifact",
+      "question": "Did invoice amount $25,000 for Vendor V102 match the Purchase Order amount?",
+      "expected_answer": "25,000",
+      "baseline_answer": "25,000",
+      "nexdoc_answer": "25,000",
+      "baseline_correct": true,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"invoice::page1!block2\", \"type\": \"field\", \"label\": \"invoice total: $25,000\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    },
+    {
+      "question_id": "Q05",
+      "category": "diagram",
+      "question": "What step follows 'Check Budget' in the approval flow?",
+      "expected_answer": "Approved",
+      "baseline_answer": "Approved",
+      "nexdoc_answer": "Approved",
+      "baseline_correct": true,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"approval_flow::node-3\", \"type\": \"node\", \"label\": \"approved\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    },
+    {
+      "question_id": "Q06",
+      "category": "multi_hop",
+      "question": "Which vendor had an invoice matching the PO amount and passed the Check Budget approval workflow?",
+      "expected_answer": "V102",
+      "baseline_answer": "Incorrect/Not Found",
+      "nexdoc_answer": "V102",
+      "baseline_correct": false,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"invoice::page1!block1\", \"type\": \"field\", \"label\": \"vendor id: v102\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    },
+    {
+      "question_id": "Q07",
+      "category": "distractor",
+      "question": "Which vendor has 'Pending' status?",
+      "expected_answer": "Globex",
+      "baseline_answer": "Globex",
+      "nexdoc_answer": "Globex",
+      "baseline_correct": true,
+      "nexdoc_correct": true,
+      "nexdoc_evidence": [
+        "{\"id\": \"vendor_master::vendors!b3\", \"type\": \"label\", \"label\": \"globex\""
+      ],
+      "source_artifacts": [
+        "approval_flow.png",
+        "budget.xlsx",
+        "invoice.pdf",
+        "purchase_order.pdf",
+        "vendor_master.xlsx"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+openpyxl>=3.1
+anthropic>=0.40
+
+# Phase 2 — document adapter
+PyMuPDF>=1.24
+langdetect>=1.0.9
+Pillow>=10.0
+
+# OCR engine (shared by the document and diagram adapters via
+# adapters/common/ocr.py). EasyOCR replaced pytesseract/Tesseract here —
+# see adapters/common/ocr.py's module docstring and adapters/document/
+# README.md's "OCR engine" section for why. It's pure Python + PyTorch
+# (no system binary to install with elevation), and its recognition
+# models are picked per-language rather than depending on whatever OS
+# language packs happen to be present. This pulls in `torch` — a real,
+# large (~700MB+ with its CUDA wheels on Linux) dependency — but
+# inference itself runs fully offline/on-CPU with no network calls once
+# the one-time model download (~85MB detector + ~200MB per recognition
+# model, cached under ~/.EasyOCR) has happened.
+easyocr>=1.7.1
+
+# Phase 2 fixture generation only (not an adapter runtime dependency)
+reportlab>=4.0
+
+# Phase 3 — diagram adapter
+opencv-python>=4.9
+numpy>=1.26
+
+# Phase 4 — schema conformance test
+jsonschema>=4.20
+
+# Local web app (webapp/) — wraps the existing pipeline for interactive,
+# single-user local use. No new adapter/runtime dependency: FastAPI just
+# calls adapters.router.build_artifact_for, the same function the CLI uses.
+fastapi>=0.110
+uvicorn>=0.27
+python-multipart>=0.0.9
+
+# Real task-accuracy Q&A (qa/groq_qa.py, eval/run_real_eval.py, webapp's
+# POST /api/ask) — the LLM-backed eval docs/eval-methodology.md describes
+# as not yet built. Requires a real GROQ_API_KEY to actually call the
+# model; importing qa/groq_qa.py itself never requires network access.
+groq>=0.11
+python-dotenv>=1.0

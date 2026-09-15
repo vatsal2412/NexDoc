@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexDoc Final Demo - Judge Review Mode</title>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f5f7fa; color: #333; margin: 0; padding: 20px; }
+    h1, h2, h3 { color: #1a1a1a; }
+    .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .panel { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    
+    /* Graph */
+    .graph-node { padding: 10px 15px; border-radius: 5px; margin: 10px 0; font-weight: 500; font-size: 14px; display: inline-block; border: 2px solid; }
+    .node-invoice { background: #e3f2fd; border-color: #2196f3; }
+    .node-vendor { background: #e8f5e9; border-color: #4caf50; }
+    .node-budget { background: #fff3e0; border-color: #ff9800; }
+    .node-flow { background: #f3e5f5; border-color: #9c27b0; }
+    
+    .graph-edge { margin-left: 40px; padding-left: 20px; border-left: 2px solid #ccc; position: relative; }
+    .graph-edge::before { content: '──────→'; color: #ccc; position: absolute; left: -2px; top: 15px; font-weight: bold; letter-spacing: -2px; }
+    
+    /* Review */
+    .review-item { border: 1px solid #ffc107; background: #fffdf5; padding: 15px; border-radius: 6px; }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .badge-warning { background: #ffc107; color: #000; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+    .review-details { display: grid; grid-template-columns: 100px 1fr; gap: 5px; font-size: 14px; margin-bottom: 15px; }
+    .review-details strong { color: #555; }
+    .btn-group button { padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-right: 5px; }
+    .btn-approve { background: #4caf50; color: white; }
+    .btn-correct { background: #2196f3; color: white; }
+    .btn-reject { background: #f44336; color: white; }
+</style>
+</head>
+<body>
+
+<h1>NexDoc: Semantic Execution Engine</h1>
+<p>Proving cross-artifact reasoning and robust confidence handling.</p>
+
+<div class="container">
+    
+    <!-- 1. Semantic Graph Visualization -->
+    <div class="panel">
+        <h2>Semantic Graph Visualization</h2>
+        <p style="color: #666; font-size: 14px;">Visually traces the relationships constructed by <code>adapters/cross_artifact.py</code>.</p>
+        
+        <div>
+            <div class="graph-node node-invoice">Invoice INV-1042</div>
+            
+            <div class="graph-edge">
+                <span style="font-size: 12px; color: #888; position: absolute; left: 15px; top: -5px;">Vendor Match</span>
+                <div class="graph-node node-vendor">Vendor Master: V102 (Acme Corp)</div>
+            </div>
+            
+            <div class="graph-edge">
+                <span style="font-size: 12px; color: #888; position: absolute; left: 15px; top: -5px;">Amount Verification</span>
+                <div class="graph-node node-budget">Budget Row: Hardware (Remaining: $100,000)</div>
+            </div>
+            
+            <div class="graph-edge">
+                <span style="font-size: 12px; color: #888; position: absolute; left: 15px; top: -5px;">Process Step</span>
+                <div class="graph-node node-flow">Approval Flow: Check Budget Node</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Human Review UI -->
+    <div class="panel">
+        <h2>Human Review UI</h2>
+        <p style="color: #666; font-size: 14px;">Intercepts artifacts where the extraction confidence falls below the strict 0.90 threshold.</p>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span style="font-weight: 600;">REVIEW REQUIRED</span>
+                <span class="badge-warning">Confidence: 0.61</span>
+            </div>
+            
+            <div class="review-details">
+                <strong>Source:</strong> <span>invoice_scanned.pdf → Page 1</span>
+                <strong>Extracted:</strong> <span><input type="text" value="₹18,400" style="padding: 4px; border: 1px solid #ccc; border-radius: 4px; width: 120px;"></span>
+                <strong>Reason:</strong> <span>Low OCR confidence (noisy scan background)</span>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn-approve" onclick="alert('Value Approved. Graph updated.')">Approve</button>
+                <button class="btn-correct" onclick="alert('Correction Saved. Graph updated.')">Correct</button>
+                <button class="btn-reject" onclick="alert('Region Rejected. Edge discarded.')">Reject</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

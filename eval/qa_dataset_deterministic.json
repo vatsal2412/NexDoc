@@ -1,0 +1,51 @@
+[
+  {
+    "question_id": "Q01",
+    "category": "fact",
+    "question": "What is the Vendor ID on the invoice?",
+    "expected_answer": "V102",
+    "baseline_should_fail": false
+  },
+  {
+    "question_id": "Q02",
+    "category": "table",
+    "question": "What is the approved budget for the IT Department's Hardware category?",
+    "expected_answer": "100000",
+    "baseline_should_fail": true
+  },
+  {
+    "question_id": "Q03",
+    "category": "relationship",
+    "question": "Which vendor name corresponds to Vendor ID V103?",
+    "expected_answer": "Globex",
+    "baseline_should_fail": true
+  },
+  {
+    "question_id": "Q04",
+    "category": "cross_artifact",
+    "question": "Did invoice amount $25,000 for Vendor V102 match the Purchase Order amount?",
+    "expected_answer": "25,000",
+    "baseline_should_fail": true
+  },
+  {
+    "question_id": "Q05",
+    "category": "diagram",
+    "question": "What step follows 'Check Budget' in the approval flow?",
+    "expected_answer": "Approved",
+    "baseline_should_fail": true
+  },
+  {
+    "question_id": "Q06",
+    "category": "multi_hop",
+    "question": "Which vendor had an invoice matching the PO amount and passed the Check Budget approval workflow?",
+    "expected_answer": "V102",
+    "baseline_should_fail": true
+  },
+  {
+    "question_id": "Q07",
+    "category": "distractor",
+    "question": "Which vendor has 'Pending' status?",
+    "expected_answer": "Globex",
+    "baseline_should_fail": true
+  }
+]
